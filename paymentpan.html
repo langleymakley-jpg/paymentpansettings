@@ -1,0 +1,369 @@
+
+```html
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment Methods - Pans Store</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #333;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 800px;
+            background-color: white;
+            border-radius: 20px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+            overflow: hidden;
+        }
+        
+        .header {
+            background: linear-gradient(to right, #4facfe 0%, #00f2fe 100%);
+            color: white;
+            padding: 30px;
+            text-align: center;
+            position: relative;
+        }
+        
+        .header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
+        }
+        
+        .header p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+        
+        .logo {
+            position: absolute;
+            top: 20px;
+            left: 30px;
+            font-size: 2rem;
+            background: rgba(255, 255, 255, 0.2);
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .content {
+            padding: 40px;
+        }
+        
+        .payment-method {
+            background: #f8f9fa;
+            border-radius: 15px;
+            padding: 25px;
+            margin-bottom: 25px;
+            border-left: 5px solid #4facfe;
+            transition: transform 0.3s, box-shadow 0.3s;
+            display: flex;
+            align-items: center;
+        }
+        
+        .payment-method:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+        
+        .payment-icon {
+            font-size: 2.5rem;
+            margin-right: 20px;
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+        }
+        
+        .dana .payment-icon {
+            background: linear-gradient(45deg, #00b0ff, #0081cb);
+        }
+        
+        .gopay .payment-icon {
+            background: linear-gradient(45deg, #00aa13, #008f0e);
+        }
+        
+        .qris .payment-icon {
+            background: linear-gradient(45deg, #ff6b6b, #ee5a52);
+        }
+        
+        .payment-details h3 {
+            font-size: 1.5rem;
+            margin-bottom: 8px;
+            color: #333;
+        }
+        
+        .payment-details p {
+            margin-bottom: 5px;
+            font-size: 1.1rem;
+        }
+        
+        .highlight {
+            background-color: #fff9e6;
+            padding: 10px 15px;
+            border-radius: 10px;
+            font-weight: bold;
+            color: #333;
+            display: inline-block;
+            margin-top: 5px;
+            border: 2px dashed #ffcc00;
+        }
+        
+        .button-container {
+            display: flex;
+            justify-content: center;
+            margin-top: 30px;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+        
+        .btn {
+            padding: 16px 30px;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            border: none;
+            min-width: 200px;
+        }
+        
+        .btn-whatsapp {
+            background: linear-gradient(45deg, #25D366, #128C7E);
+            color: white;
+            box-shadow: 0 5px 15px rgba(37, 211, 102, 0.4);
+        }
+        
+        .btn-whatsapp:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(37, 211, 102, 0.6);
+        }
+        
+        .btn-copy {
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            color: white;
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+        }
+        
+        .btn-copy:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(102, 126, 234, 0.6);
+        }
+        
+        .btn i {
+            margin-right: 10px;
+            font-size: 1.3rem;
+        }
+        
+        .footer {
+            text-align: center;
+            margin-top: 30px;
+            padding: 20px;
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 0.9rem;
+        }
+        
+        .footer a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        
+        .footer a:hover {
+            text-decoration: underline;
+        }
+        
+        .alert {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            padding: 15px 25px;
+            background: #4CAF50;
+            color: white;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            z-index: 1000;
+            opacity: 0;
+            transform: translateY(-20px);
+            transition: all 0.3s ease;
+        }
+        
+        .alert.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2rem;
+            }
+            
+            .content {
+                padding: 20px;
+            }
+            
+            .payment-method {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .payment-icon {
+                margin-right: 0;
+                margin-bottom: 15px;
+            }
+            
+            .btn {
+                min-width: 100%;
+            }
+            
+            .logo {
+                position: relative;
+                top: 0;
+                left: 0;
+                margin-bottom: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="logo">
+                <i class="fas fa-store"></i>
+            </div>
+            <h1>Pans Store</h1>
+            <p>Pilih metode pembayaran yang tersedia</p>
+        </div>
+        
+        <div class="content">
+            <div class="payment-method dana">
+                <div class="payment-icon">
+                    <i class="fas fa-wallet"></i>
+                </div>
+                <div class="payment-details">
+                    <h3>DANA</h3>
+                    <p>Nomor: <span class="highlight" id="dana-number">085882337743</span></p>
+                    <p>Atas Nama: <strong>irropanz</strong></p>
+                </div>
+            </div>
+            
+            <div class="payment-method gopay">
+                <div class="payment-icon">
+                    <i class="fas fa-mobile-alt"></i>
+                </div>
+                <div class="payment-details">
+                    <h3>GOPAY</h3>
+                    <p>Nomor: <span class="highlight" id="gopay-number">085882337743</span></p>
+                    <p>Atas Nama: <strong>PANS STORE</strong></p>
+                </div>
+            </div>
+            
+            <div class="payment-method qris">
+                <div class="payment-icon">
+                    <i class="fas fa-qrcode"></i>
+                </div>
+                <div class="payment-details">
+                    <h3>QRIS</h3>
+                    <p>Minta QRIS ke Admin</p>
+                    <p class="highlight">Scan untuk pembayaran yang lebih mudah</p>
+                </div>
+            </div>
+            
+            <div class="button-container">
+                <a href="http://wa.me/6285882337743" target="_blank" class="btn btn-whatsapp">
+                    <i class="fab fa-whatsapp"></i> Hubungi Admin
+                </a>
+                <button class="btn btn-copy" id="copy-dana">
+                    <i class="far fa-copy"></i> Salin No. DANA
+                </button>
+                <button class="btn btn-copy" id="copy-gopay">
+                    <i class="far fa-copy"></i> Salin No. GOPAY
+                </button>
+            </div>
+        </div>
+    </div>
+    
+    <div class="footer">
+        <p>© 2023 Pans Store. Untuk bantuan lebih lanjut, hubungi admin di <a href="http://wa.me/6285882337743" target="_blank">085882337743</a></p>
+    </div>
+    
+    <div class="alert" id="alert">Nomor berhasil disalin!</div>
+    
+    <script>
+        // Fungsi untuk menyalin teks ke clipboard
+        function copyToClipboard(text, message) {
+            navigator.clipboard.writeText(text).then(() => {
+                showAlert(message);
+            }).catch(err => {
+                console.error('Gagal menyalin: ', err);
+                showAlert('Gagal menyalin, silahkan salin manual');
+            });
+        }
+        
+        // Fungsi untuk menampilkan alert
+        function showAlert(message) {
+            const alert = document.getElementById('alert');
+            alert.textContent = message;
+            alert.classList.add('show');
+            
+            setTimeout(() => {
+                alert.classList.remove('show');
+            }, 3000);
+        }
+        
+        // Event listener untuk tombol salin DANA
+        document.getElementById('copy-dana').addEventListener('click', function() {
+            const danaNumber = document.getElementById('dana-number').textContent;
+            copyToClipboard(danaNumber, 'Nomor DANA berhasil disalin!');
+        });
+        
+        // Event listener untuk tombol salin GOPAY
+        document.getElementById('copy-gopay').addEventListener('click', function() {
+            const gopayNumber = document.getElementById('gopay-number').textContent;
+            copyToClipboard(gopayNumber, 'Nomor GOPAY berhasil disalin!');
+        });
+        
+        // Tambahkan efek hover pada semua tombol
+        const buttons = document.querySelectorAll('.btn');
+        buttons.forEach(button => {
+            button.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-3px)';
+            });
+            
+            button.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0)';
+            });
+        });
+    </script>
+</body>
+</html>
+```
